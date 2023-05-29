@@ -3,34 +3,21 @@ package com.github.employeecreator.employees;
 import com.github.employeecreator.address.Address;
 import com.github.employeecreator.employmentStatus.EmploymentStatus;
 
-import jakarta.validation.constraints.NotBlank;
+public class UpdateEmployeeDTO {
 
-public class CreateEmployeeDTO {
-	@NotBlank
 	String firstName;
-	String middleName;
-	@NotBlank
-	String lastName;
-	@NotBlank
-	String email;
-	@NotBlank
-	String mobileNumber;
-	@NotBlank
-	Address address;
-	@NotBlank
-	EmploymentStatus employmentStatus;
 
-	public CreateEmployeeDTO(@NotBlank String firstName, String middleName, @NotBlank String lastName,
-			@NotBlank String email, @NotBlank String mobileNumber, Address address, EmploymentStatus employmentStatus) {
-		super();
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.address = address;
-		this.employmentStatus = employmentStatus;
-	}
+	String middleName;
+
+	String lastName;
+
+	String email;
+
+	String mobileNumber;
+
+	Address address;
+
+	EmploymentStatus employmentStatus;
 
 	public String getFirstName() {
 		return firstName;
