@@ -54,6 +54,7 @@ A web application to create, list, modify and delete employees. The application 
 
 - Created a diagram of what I want my SQL Table set up to be, [link here](https://dbdiagram.io/d/647404f07764f72fcfff053f).
 - Implemented the methods GET, POST, DELETE, and PATCH
+- Started implementing validation on the backend
 
 ---
 
