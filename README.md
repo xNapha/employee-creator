@@ -58,8 +58,10 @@ A web application to create, list, modify and delete employees. The application 
 
 ---
 
-<!-- ## What did you struggle with?
+## What did you struggling with?
 
-- What? Why? How?
+### 29/05/2023 | Updating One to One Relationship
 
---- -->
+What I struggled with was trying to update a one to one relationship. Prior to what I have currently implemented it would insert new data into the address table, creating a whole new row and updating the address_id value on the employees table, but it old value wasn't being deleted. The current fix I have in place doesn't actually update the row leaving the id intact, it updates the whole row. I feel like this is a terrible work around, I will try and figure out a proper solution to it next time.
+
+---
