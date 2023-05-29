@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -35,7 +34,6 @@ public class Address {
 	String postCode;
 
 	@OneToOne(mappedBy = "address")
-	@JoinColumn(name = "employee_id")
 	Employee employee;
 
 	public Address() {
@@ -97,14 +95,6 @@ public class Address {
 
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 
 }

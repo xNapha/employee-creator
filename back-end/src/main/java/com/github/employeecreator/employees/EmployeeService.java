@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.employeecreator.address.Address;
+import com.github.employeecreator.address.AddressService;
 import com.github.employeecreator.employmentStatus.EmploymentStatus;
+import com.github.employeecreator.employmentStatus.EmploymentStatusService;
 
 import jakarta.transaction.Transactional;
 
@@ -20,6 +22,13 @@ public class EmployeeService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+
+	@Autowired
+	private AddressService addressService;
+
+	@Autowired
+
+	private EmploymentStatusService employmentStatusService;
 
 	public Employee create(CreateEmployeeDTO data) {
 		Employee employeeRequest = modelMapper.map(data, Employee.class);
@@ -51,12 +60,10 @@ public class EmployeeService {
 		Optional<Employee> maybeEmployee = this.findById(id);
 
 		if (maybeEmployee.isPresent()) {
+			addressService.updateById(id, data.getAddress());
+			employmentStatusService.updateById(id, data.getEmploymentStatus());
 			Employee existingEmployee = maybeEmployee.get();
-			Address existingAddress = maybeEmployee.get().getAddress();
-			EmploymentStatus existingEmploymentStatus = maybeEmployee.get().getEmploymentStatus();
 			modelMapper.map(data, existingEmployee);
-			modelMapper.map(data.getAddress(), existingAddress);
-			modelMapper.map(data.getEmploymentStatus(), existingEmploymentStatus);
 			return Optional.of(this.repository.save(existingEmployee));
 		}
 		return maybeEmployee;
