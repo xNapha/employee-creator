@@ -53,6 +53,7 @@ A web application to create, list, modify and delete employees. The application 
 ### 29/05/2023 | Project Creation
 
 - Created a diagram of what I want my SQL Table set up to be, [link here](https://dbdiagram.io/d/647404f07764f72fcfff053f).
+- Implemented the methods GET, POST, DELETE, and PATCH
 
 ---
 
