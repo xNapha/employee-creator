@@ -3,16 +3,18 @@ package com.github.employeecreator.employees;
 import com.github.employeecreator.address.Address;
 import com.github.employeecreator.employmentStatus.EmploymentStatus;
 
-public class UpdateEmployeeDTO {
+import jakarta.validation.constraints.Pattern;
 
+public class UpdateEmployeeDTO {
+	@Pattern(regexp = "^(?=\\s*\\S).*$", message = "First Name cannot be an empty string")
 	String firstName;
 
 	String middleName;
-
+	@Pattern(regexp = "^(?=\\s*\\S).*$", message = "Last Name cannot be an empty string")
 	String lastName;
-
+	@Pattern(regexp = "^(?=\\s*\\S).*$", message = "Email cannot be an empty string")
 	String email;
-
+	@Pattern(regexp = "^(?=\\s*\\S).*$", message = "Mobile Number cannot be an empty string")
 	String mobileNumber;
 
 	Address address;
