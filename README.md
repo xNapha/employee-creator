@@ -55,12 +55,17 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Implemented the methods GET, POST, DELETE, and PATCH
 - Started implementing validation on the backend
 
-## 30/05/2023 | Front End
+### 30/05/2023 | Front End
 
 - Created a simple navbar just to lay out the pages I plan on using
 - Built the foundation of the employee form
 - Was testing to see how axios works
 - Created a few helper functions
+
+### 31/05/2023 | React Hook Form
+
+- Implementing react hook form
+- Tweaking some variables to include parameters for react hook form
 
 ---
 
@@ -73,5 +78,9 @@ What I struggled with was trying to update a one to one relationship. Prior to w
 ### 30/05/2023 | Forgetting HTML
 
 I havent built a front end application in a while so my memory on which attributes I can use on a form have vanished from memory, so I feel pretty ashamed. Although I was able to quickly find the information needed to create the html for the application I feel like this is something that I shouldn't be forgetting. This just goes to show that I need to build more forms to familiarise myself with the syntax.
+
+### 31/05/2023 | Using React Hook Form for the first time
+
+During the nology course we had a brief introduction to the react hook form library, but until today I did not implement it within any projects. Now that I am reading the docs and scouring the internet to find references and documentation, I now regret never using it earlier. With the added hurdle of having to find the proper type annotations for things, I feel like the progress I have made today was lackluster. Granted i did only do a couple hours today because i was busy with other things, but still if I was more familiar with it I would have felt less unproductive. But on a positive note, I feel like it is all coming together. I just need to tweak a few more things on the form and I should be golden to start rendering out the employees within the database.
 
 ---
