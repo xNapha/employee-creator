@@ -1,15 +1,24 @@
+import { useFormContext } from "react-hook-form";
+
 type RadioInputProps = {
   inputName: string;
   labelText: string;
+  registerText: string;
 };
-const RadioInput = ({ inputName, labelText }: RadioInputProps) => {
+const RadioInput = ({
+  inputName,
+  labelText,
+  registerText,
+}: RadioInputProps) => {
+  const { register } = useFormContext();
   return (
     <div>
       <input
+        {...register(registerText)}
         type="radio"
-        name={inputName}
         id={labelText.toLowerCase()}
         value={labelText.toLowerCase()}
+        name={inputName}
       />
       <label htmlFor={labelText.toLowerCase()}>{labelText}</label>
     </div>
