@@ -1,22 +1,27 @@
 import { useFormContext } from "react-hook-form";
-
-type RadioInputProps = {
+type CheckBoxInputProps = {
+  inputName: string;
   labelText: string;
   registerText: string;
 };
-const RadioInput = ({ labelText, registerText }: RadioInputProps) => {
+const CheckBoxInput = ({
+  inputName,
+  labelText,
+  registerText,
+}: CheckBoxInputProps) => {
   const { register } = useFormContext();
   return (
     <div>
       <input
         {...register(registerText)}
-        type="radio"
+        type="checkbox"
         id={labelText.toLowerCase()}
         value={labelText.toLowerCase()}
+        name={inputName}
       />
       <label htmlFor={labelText.toLowerCase()}>{labelText}</label>
     </div>
   );
 };
 
-export default RadioInput;
+export default CheckBoxInput;

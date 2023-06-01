@@ -3,35 +3,38 @@ import DateInput from "../../components/Form/DateInput";
 import {
   renderRadioInputComponents,
   renderTextInputComponents,
+  personalInformation,
+  contactDetails,
+  contractType,
+  timeBasis,
 } from "../../services/AddEmployeeHelpers";
 import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import CheckBoxInput from "../../components/Form/CheckBoxInput";
+
+const schema = yup.object({
+  firstName: yup.string().required(),
+  middleName: yup.string(),
+  lastName: yup.string().required(),
+  email: yup.string().email(),
+  mobileNumber: yup.string(),
+  address: yup.object({
+    streetNumber: yup.string().required(),
+    streetName: yup.string().required(),
+    suburb: yup.string().required(),
+    state: yup.string().required(),
+    postCode: yup.string().required(),
+  }),
+  employmentStatus: yup.object({
+    contract: yup.string().required(),
+    onGoing: yup.boolean(),
+    timeBasis: yup.string().required(),
+  }),
+});
 
 const AddEmployee = () => {
-  const methods = useForm();
-
-  const personalInformation = {
-    inputType: "text",
-    labelTexts: ["First name", "Middle name", "Last name"],
-    registerText: ["firstName", "middleName", "lastName"],
-  };
-
-  const contactDetails = {
-    inputType: "text",
-    labelTexts: ["Mobile number", "Residential address"],
-    registerText: ["mobileNumber", "address.streetName"],
-  };
-
-  const contractType = {
-    inputName: "contract",
-    labelTexts: ["Permanent", "Contract"],
-    registerText: "employmentStatus.contract",
-  };
-
-  const timeBasis = {
-    inputName: "timeBasis",
-    labelTexts: ["Full-time", "Part-time"],
-    registerText: "employmentStatus.timeBasis",
-  };
+  const methods = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -45,14 +48,8 @@ const AddEmployee = () => {
         {renderTextInputComponents(personalInformation)}
 
         <h2>Contact Details</h2>
-        <TextInput
-          inputType="email"
-          labelText="Email address"
-          registerText="email"
-        />
-        <div {...methods.register("address")}>
-          {renderTextInputComponents(contactDetails)}
-        </div>
+        {renderTextInputComponents(contactDetails)}
+        {/* street number, street name, suburb, state, postcode */}
 
         <h2>Employee Status</h2>
         <h4>What is the contract type?</h4>
@@ -67,8 +64,8 @@ const AddEmployee = () => {
           registerText="employmentStatus.endDate"
         />
 
-        <TextInput
-          inputType="checkbox"
+        <CheckBoxInput
+          inputName="onGoing"
           labelText="On going"
           registerText="employmentStatus.onGoing"
         />
@@ -77,7 +74,6 @@ const AddEmployee = () => {
         {renderRadioInputComponents(timeBasis)}
 
         <TextInput
-          inputType="text"
           labelText="Hours per week"
           registerText="employmentStatus.hoursPerWeek"
         />

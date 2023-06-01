@@ -1,32 +1,92 @@
 import TextInput from "../components/Form/TextInput";
 import RadioInput from "../components/Form/RadioInput";
 
-export const renderTextInputComponents = (arr: {
-  inputType: string;
-  labelTexts: string[];
-  registerText: string[];
+type categoriesType = {
+  labelText: string;
+  registerText: string;
+};
+
+export const renderTextInputComponents = (obj: {
+  categories: Array<categoriesType>;
 }) => {
-  return arr.labelTexts.map((labelText: string, index: number) => (
+  return obj.categories.map((category) => (
     <TextInput
-      key={labelText}
-      inputType={arr.inputType}
-      labelText={labelText}
-      registerText={arr.registerText[index]}
+      key={category.labelText}
+      labelText={category.labelText}
+      registerText={category.registerText}
     />
   ));
 };
 
 export const renderRadioInputComponents = (arr: {
-  inputName: string;
   labelTexts: string[];
   registerText: string;
 }) => {
   return arr.labelTexts.map((labelText) => (
     <RadioInput
       key={labelText}
-      inputName={arr.inputName}
       labelText={labelText}
       registerText={arr.registerText}
     />
   ));
+};
+
+export const personalInformation = {
+  categories: [
+    {
+      labelText: "First Name",
+      registerText: "firstName",
+    },
+    {
+      labelText: "Middle Name",
+      registerText: "middleName",
+    },
+    {
+      labelText: "Last Name",
+      registerText: "lastName",
+    },
+  ],
+};
+
+export const contactDetails = {
+  categories: [
+    {
+      labelText: "Email address",
+      registerText: "email",
+    },
+    {
+      labelText: "Mobile number",
+      registerText: "mobileNumber",
+    },
+    {
+      labelText: "Street number",
+      registerText: "address.streetNumber",
+    },
+    {
+      labelText: "Street name",
+      registerText: "address.streetName",
+    },
+    {
+      labelText: "Suburb",
+      registerText: "address.suburb",
+    },
+    {
+      labelText: "State",
+      registerText: "address.state",
+    },
+    {
+      labelText: "Post code",
+      registerText: "address.postCode",
+    },
+  ],
+};
+
+export const contractType = {
+  labelTexts: ["Permanent", "Contract"],
+  registerText: "employmentStatus.contract",
+};
+
+export const timeBasis = {
+  labelTexts: ["Full-time", "Part-time"],
+  registerText: "employmentStatus.timeBasis",
 };
