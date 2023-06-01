@@ -67,11 +67,19 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Implementing react hook form
 - Tweaking some variables to include parameters for react hook form
 
+### 1/06/2023 | React Hook Form Validation
+
+- Creating the schema for the form
+- Using the formprovider and methods to allow everything to register properly
+- Created an axios function to post to the database
+- Refactored some of the variables in AddEmployeeHelpers.tsx
+- Created a utility folder
+
 ---
 
 ## What did you struggling with?
 
-### 29/05/2023 | Updating One to One Relationship
+### 29/05/2023 | Updating one to one relationship
 
 What I struggled with was trying to update a one to one relationship. Prior to what I have currently implemented it would insert new data into the address table, creating a whole new row and updating the address_id value on the employees table, but it old value wasn't being deleted. The current fix I have in place doesn't actually update the row leaving the id intact, it updates the whole row. I feel like this is a terrible work around, I will try and figure out a proper solution to it next time.
 
@@ -79,8 +87,23 @@ What I struggled with was trying to update a one to one relationship. Prior to w
 
 I havent built a front end application in a while so my memory on which attributes I can use on a form have vanished from memory, so I feel pretty ashamed. Although I was able to quickly find the information needed to create the html for the application I feel like this is something that I shouldn't be forgetting. This just goes to show that I need to build more forms to familiarise myself with the syntax.
 
-### 31/05/2023 | Using React Hook Form for the first time
+### 31/05/2023 | Using react hook form for the first time
 
 During the nology course we had a brief introduction to the react hook form library, but until today I did not implement it within any projects. Now that I am reading the docs and scouring the internet to find references and documentation, I now regret never using it earlier. With the added hurdle of having to find the proper type annotations for things, I feel like the progress I have made today was lackluster. Granted i did only do a couple hours today because i was busy with other things, but still if I was more familiar with it I would have felt less unproductive. But on a positive note, I feel like it is all coming together. I just need to tweak a few more things on the form and I should be golden to start rendering out the employees within the database.
+
+### 1/06/2023 | Type annotations
+
+Since this is my first time creating a project using typescript, I have not yet learnt how to properly annotate types. Other than the basic <string | number | null | undefined > and their array variants i was confused on how I go about type annotating objects. I'm not too sure if the way I am doing it now is correct or not, but there isn't any errors showing. B(Below is just an example of what I am doing currently.)
+
+```typescript
+type blah = {
+  foo: string;
+  bar: lah;
+};
+type lah = {
+  mars: string;
+  snickers: int[];
+};
+```
 
 ---

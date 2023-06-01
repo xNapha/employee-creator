@@ -1,5 +1,7 @@
 package com.github.employeecreator.employmentStatus;
 
+import java.util.Date;
+
 import com.github.employeecreator.employees.Employee;
 
 import jakarta.persistence.Column;
@@ -18,10 +20,10 @@ public class EmploymentStatus {
 	Long id;
 
 	@Column
-	String startDate;
+	Date startDate;
 
 	@Column
-	String endDate;
+	Date endDate;
 
 	@Column
 	Boolean isOnGoing;
@@ -33,7 +35,7 @@ public class EmploymentStatus {
 	String contractType;
 
 	@Column
-	Integer hoursPerWeek;
+	String hoursPerWeek;
 
 	@OneToOne(mappedBy = "employmentStatus")
 	Employee employee;
@@ -41,8 +43,8 @@ public class EmploymentStatus {
 	public EmploymentStatus() {
 	}
 
-	public EmploymentStatus(String startDate, String endDate, Boolean isOnGoing, String timeBasis, String contractType,
-			Integer hoursPerWeek) {
+	public EmploymentStatus(Date startDate, Date endDate, Boolean isOnGoing, String timeBasis, String contractType,
+			String hoursPerWeek) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -52,19 +54,19 @@ public class EmploymentStatus {
 		this.hoursPerWeek = hoursPerWeek;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -92,11 +94,11 @@ public class EmploymentStatus {
 		this.contractType = contractType;
 	}
 
-	public Integer getHoursPerWeek() {
+	public String getHoursPerWeek() {
 		return hoursPerWeek;
 	}
 
-	public void setHoursPerWeek(Integer hoursPerWeek) {
+	public void setHoursPerWeek(String hoursPerWeek) {
 		this.hoursPerWeek = hoursPerWeek;
 	}
 
