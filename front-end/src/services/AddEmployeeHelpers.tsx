@@ -83,10 +83,33 @@ export const contactDetails = {
 
 export const contractType = {
   labelTexts: ["Permanent", "Contract"],
-  registerText: "employmentStatus.contract",
+  registerText: "employmentStatus.contractType",
 };
 
 export const timeBasis = {
   labelTexts: ["Full-time", "Part-time"],
   registerText: "employmentStatus.timeBasis",
+};
+
+export const defaultValues = {
+  firstName: "",
+  middleName: null,
+  lastName: "",
+  email: "",
+  mobileNumber: "",
+  address: {
+    streetNumber: "",
+    streetName: "",
+    suburb: "",
+    state: "",
+    postCode: "",
+  },
+  employmentStatus: {
+    contractType: "permanent",
+    startDate: undefined,
+    endDate: undefined,
+    isOnGoing: true,
+    timeBasis: "full-time",
+    hoursPerWeek: "",
+  },
 };

@@ -10,7 +10,11 @@ const TextInput = ({ labelText, registerText }: TextInputProps) => {
   return (
     <div>
       <label htmlFor="">{labelText}</label>
-      <input {...register(registerText)} />
+      <input
+        {...register(registerText, {
+          setValueAs: (value) => (value ? value : null),
+        })}
+      />
     </div>
   );
 };

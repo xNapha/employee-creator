@@ -7,7 +7,7 @@ const EmployeeList = () => {
     getEmployees(setTest);
   }, []);
   const renderEmployees = test?.map((employee) => {
-    return <p>{employee.email}</p>;
+    return <p key={employee.id}>{employee.email}</p>;
   });
   return <div>{renderEmployees}</div>;
 };
