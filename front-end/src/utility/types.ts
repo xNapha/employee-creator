@@ -1,14 +1,16 @@
 export type FormValues = {
+  id: number | undefined;
   firstName: string;
   middleName: string | null;
   lastName: string;
   email: string | null;
   mobileNumber: string;
   address: AddressValues;
-  employmentStatus: EmploymentstatusValues;
+  employmentStatus: EmploymentStatusValues;
 };
 
 export type AddressValues = {
+  id: number | undefined;
   streetNumber: string;
   streetName: string;
   suburb: string;
@@ -16,7 +18,8 @@ export type AddressValues = {
   postCode: string;
 };
 
-export type EmploymentstatusValues = {
+export type EmploymentStatusValues = {
+  id: number | undefined;
   contractType: string;
   startDate: Date;
   endDate: Date | null;

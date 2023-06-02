@@ -1,9 +1,11 @@
 import axios from "axios";
 
-export const getEmployees = (setTest: Function) => {
-  axios
+export const getEmployees = async () => {
+  return axios
     .get("http://localhost:8080/employees")
-    .then((response) => setTest(response.data))
+    .then((response) => {
+      return response.data;
+    })
     .catch((error) => console.error(error));
 };
 

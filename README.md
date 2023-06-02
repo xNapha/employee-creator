@@ -75,6 +75,10 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Refactored some of the variables in AddEmployeeHelpers.tsx
 - Created a utility folder
 
+### 2/06/2023 | Redux
+
+- Changed from using useState to Redux
+
 ---
 
 ## What did you struggling with?
@@ -105,5 +109,9 @@ type lah = {
   snickers: int[];
 };
 ```
+
+### 2/06/2023 | Redux
+
+I understand the concept of redux but implementing the code is a lot more tedious than I thought, there is too much boilerplate setup before I can actually use it. It seems like a very powerful library to control state, but I feel like it might be over kill for this project, enough though it was recommended to use it by the nology coaches. But atleast it does get me learning and using it, otherwise I don't think I would ever find a use case to actually implement it.
 
 ---
