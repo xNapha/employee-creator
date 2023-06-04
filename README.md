@@ -79,6 +79,15 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 
 - Changed from using useState to Redux
 
+### 4/06/2023 | More Redux, Refactoring, Adding Some QoL Features
+
+- Deleted axios.ts file from services infavor of using redux createAsyncThunk and slices, because I am using createAsyncThunk I might find a way to incorporate state updates with it otherwise I'll leave it as is
+- redux state now holds the formdata for an employee if the user decides to edit that employees information
+- Added a button on the employee component to show a form to update the user information
+- Moved all types to the type files in utility
+- Updated the defaultValues for the Form to show the current date and end date if applicable
+- Deleted Nav Bar because I realised that it was out of scope for what the project mvp wanted
+
 ---
 
 ## What did you struggling with?

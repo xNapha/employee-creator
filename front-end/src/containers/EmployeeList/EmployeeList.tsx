@@ -3,40 +3,18 @@ import { FormValues } from "../../utility/types";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllEmployees } from "../../slices/employeeSlice";
 import { AppDispatch } from "../../../store";
-import Employee from "../../components/Employee/Employee";
+import Employee from "../Employee/Employee";
 
 const EmployeeList = () => {
-  // const [allEmployees, setAllEmployees] = useState([]);
-  // const employeeData = useRef([]);
   const employee = useSelector((state: any) => state.employee);
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     dispatch(fetchAllEmployees());
   }, []);
+
   const renderEmployees = employee?.employees?.map((employee: FormValues) => {
-    const {
-      id,
-      firstName,
-      middleName,
-      lastName,
-      email,
-      mobileNumber,
-      address,
-      employmentStatus,
-    } = employee;
-    return (
-      <Employee
-        key={id}
-        id={id}
-        firstName={firstName}
-        middleName={middleName}
-        lastName={lastName}
-        email={email}
-        mobileNumber={mobileNumber}
-        address={address}
-        employmentStatus={employmentStatus}
-      />
-    );
+    return <Employee key={employee.id} employee={employee} />;
   });
 
   return (

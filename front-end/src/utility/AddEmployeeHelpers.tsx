@@ -1,13 +1,9 @@
 import TextInput from "../components/Form/TextInput";
 import RadioInput from "../components/Form/RadioInput";
-
-type categoriesType = {
-  labelText: string;
-  registerText: string;
-};
+import { CategoriesType } from "./types";
 
 export const renderTextInputComponents = (obj: {
-  categories: Array<categoriesType>;
+  categories: Array<CategoriesType>;
 }) => {
   return obj.categories.map((category) => (
     <TextInput
@@ -91,6 +87,19 @@ export const timeBasis = {
   registerText: "employmentStatus.timeBasis",
 };
 
+export const formatDate = (dateString: string | null) => {
+  if (!dateString) {
+    return null;
+  }
+  const dateObj = new Date(dateString);
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth();
+  const date = dateObj.getDate();
+  return `${year}-${month + 1 > 9 ? month + 1 : `0${month + 1}`}-${
+    date < 10 ? `0${date}` : date
+  }`;
+};
+
 export const defaultValues = {
   firstName: "",
   middleName: null,
@@ -106,8 +115,8 @@ export const defaultValues = {
   },
   employmentStatus: {
     contractType: "permanent",
-    startDate: undefined,
-    endDate: undefined,
+    startDate: formatDate(new Date().toDateString()),
+    endDate: null,
     isOnGoing: true,
     timeBasis: "full-time",
     hoursPerWeek: "",

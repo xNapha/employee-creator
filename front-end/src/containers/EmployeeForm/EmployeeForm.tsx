@@ -8,31 +8,60 @@ import {
   contractType,
   timeBasis,
   defaultValues,
-} from "../../services/AddEmployeeHelpers";
+} from "../../utility/AddEmployeeHelpers";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CheckBoxInput from "../../components/Form/CheckBoxInput";
-import { postNewEmployee } from "../../services/axios";
 import { useState } from "react";
-import { FormValues } from "../../utility/types";
+import { FormValues, UpdateForm } from "../../utility/types";
 import { schema } from "../../utility/formSchema";
+import { AppDispatch } from "../../../store";
+import { useDispatch } from "react-redux";
+import {
+  addNewEmployee,
+  fetchAllEmployees,
+  updateEmployee,
+} from "../../slices/employeeSlice";
 
-const AddEmployee = () => {
+const EmployeeForm = ({
+  updateForm,
+  isFormVisible,
+  setIsFormVisible,
+}: UpdateForm) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [isDisabled, setIsDisabled] = useState(true);
+
   const methods = useForm<FormValues>({
-    defaultValues: { ...defaultValues },
+    defaultValues: updateForm ? { ...updateForm } : { ...defaultValues },
     resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    if (await postNewEmployee(data)) {
-      methods.reset();
+    if (updateForm) {
+      const values = { id: updateForm.id, data: data };
+      await dispatch(updateEmployee(values));
+    } else {
+      await dispatch(addNewEmployee(data));
     }
+    await dispatch(fetchAllEmployees());
+    methods.reset();
+    setIsFormVisible(!isFormVisible);
   };
 
   return (
     <FormProvider {...methods}>
-      <h1>Employee Details</h1>
+      <div>
+        <h1>Employee Details</h1>
+        <button
+          type="button"
+          onClick={() => {
+            setIsFormVisible(!isFormVisible);
+          }}
+        >
+          Exit
+        </button>
+      </div>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div>
           <h2>Personal Information</h2>
@@ -86,11 +115,11 @@ const AddEmployee = () => {
             methods.reset();
           }}
         >
-          Cancel
+          Reset
         </button>
       </form>
     </FormProvider>
   );
 };
 
-export default AddEmployee;
+export default EmployeeForm;

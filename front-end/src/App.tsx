@@ -1,22 +1,30 @@
-import { Route, Routes } from "react-router-dom";
-import Homepage from "./containers/Homepage/Homepage";
-import NavigationBar from "./containers/NavigationBar/NavigationBar";
 import EmployeeList from "./containers/EmployeeList/EmployeeList";
-import AddEmployee from "./containers/AddEmployee/AddEmployee";
+import EmployeeForm from "./containers/EmployeeForm/EmployeeForm";
 
+import { useEffect, useState } from "react";
 const App = () => {
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  useEffect(() => {}, [isFormVisible]);
+
   return (
-    <>
-      <NavigationBar />
-      <Routes>
-        <Route path="/employee-creator/" element={<Homepage />} />
-        <Route path="/employee-creator/employees" element={<EmployeeList />} />
-        <Route
-          path="/employee-creator/add-employees"
-          element={<AddEmployee />}
+    <div>
+      <h1>Employee's list</h1>
+      <button
+        onClick={() => {
+          setIsFormVisible(!isFormVisible);
+        }}
+      >
+        Add new employee
+      </button>
+      <EmployeeList />
+      {isFormVisible && (
+        <EmployeeForm
+          updateForm={undefined}
+          setIsFormVisible={setIsFormVisible}
+          isFormVisible={isFormVisible}
         />
-      </Routes>
-    </>
+      )}
+    </div>
   );
 };
 

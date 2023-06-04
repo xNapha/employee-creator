@@ -21,9 +21,36 @@ export type AddressValues = {
 export type EmploymentStatusValues = {
   id: number | undefined;
   contractType: string;
-  startDate: Date;
-  endDate: Date | null;
+  startDate: string | null;
+  endDate: string | null;
   isOnGoing: boolean;
   timeBasis: string;
   hoursPerWeek: string;
+};
+
+export type UpdateEmployeeTypes = {
+  id: number | undefined;
+  data: FormValues | undefined;
+};
+
+export type ReduxState = {
+  loading: boolean;
+  employees: string | any[];
+  error: string | undefined;
+  employeeFormData: FormValues | undefined;
+};
+
+export type EmployeeComponentType = {
+  employee: FormValues;
+};
+
+export type CategoriesType = {
+  labelText: string;
+  registerText: string;
+};
+
+export type UpdateForm = {
+  updateForm: FormValues | undefined;
+  setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isFormVisible: boolean;
 };
