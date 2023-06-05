@@ -9,7 +9,13 @@
 
 ## Requirements / Purpose
 
-A web application to create, list, modify and delete employees. The application should consist of a spring RESTful API and a React Typescript frontend. The schema for the employee is left to the criteria of the candidate.
+A web application to create, list, modify and delete employees.
+
+### Stack Used
+
+- Java (Spring)
+- React (Typescript)
+- Tailwind
 
 ---
 
@@ -87,6 +93,11 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Moved all types to the type files in utility
 - Updated the defaultValues for the Form to show the current date and end date if applicable
 - Deleted Nav Bar because I realised that it was out of scope for what the project mvp wanted
+
+### 5/06/2023 | Styling With TailWind
+
+- Refactored the code to have redux store all state, I was going to use context but then i realised that if im using redux i might as well use it for everything else
+- Added some basic styling to EmployeeList, Employee
 
 ---
 

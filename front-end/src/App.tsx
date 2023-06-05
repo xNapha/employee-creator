@@ -1,30 +1,15 @@
 import EmployeeList from "./containers/EmployeeList/EmployeeList";
 import EmployeeForm from "./containers/EmployeeForm/EmployeeForm";
-
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { EmployeeState } from "./utility/types";
 const App = () => {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  useEffect(() => {}, [isFormVisible]);
-
+  const employee = useSelector((state: EmployeeState) => state.employee);
+  const { employeeFormData, isFormVisible } = employee;
   return (
-    <div>
-      <h1>Employee's list</h1>
-      <button
-        onClick={() => {
-          setIsFormVisible(!isFormVisible);
-        }}
-      >
-        Add new employee
-      </button>
+    <main>
+      {isFormVisible && <EmployeeForm updateForm={employeeFormData} />}
       <EmployeeList />
-      {isFormVisible && (
-        <EmployeeForm
-          updateForm={undefined}
-          setIsFormVisible={setIsFormVisible}
-          isFormVisible={isFormVisible}
-        />
-      )}
-    </div>
+    </main>
   );
 };
 

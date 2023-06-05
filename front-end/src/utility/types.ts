@@ -34,10 +34,11 @@ export type UpdateEmployeeTypes = {
 };
 
 export type ReduxState = {
-  loading: boolean;
-  employees: string | any[];
+  isLoading: boolean;
+  employees: Array<FormValues>;
   error: string | undefined;
   employeeFormData: FormValues | undefined;
+  isFormVisible: boolean;
 };
 
 export type EmployeeComponentType = {
@@ -51,6 +52,8 @@ export type CategoriesType = {
 
 export type UpdateForm = {
   updateForm: FormValues | undefined;
-  setIsFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  isFormVisible: boolean;
+};
+
+export type EmployeeState = {
+  employee: ReduxState;
 };

@@ -1,22 +1,34 @@
 import { AppDispatch } from "../../../store";
-import { useDispatch, useSelector } from "react-redux";
-import { removeEmployee, fetchAllEmployees } from "../../slices/employeeSlice";
+import { useDispatch } from "react-redux";
+import {
+  removeEmployee,
+  fetchAllEmployees,
+  setIsFormVisible,
+} from "../../slices/employeeSlice";
 import { addFormValues } from "../../slices/employeeSlice";
-import EmployeeForm from "../EmployeeForm/EmployeeForm";
-import { useState } from "react";
 import { EmployeeComponentType } from "../../utility/types";
 
 const Employee = ({ employee }: EmployeeComponentType) => {
   const { id, firstName, middleName, lastName, email, employmentStatus } =
     employee;
 
-  const [isFormVisible, setIsFormVisible] = useState(false);
-
-  const updateFormData = useSelector(
-    (state: any) => state.employee.employeeFormData
-  );
-
   const dispatch = useDispatch<AppDispatch>();
+
+  const capitaliseFirstLetter = (word: string) => {
+    return word.toLowerCase().replace(/./, (v) => v.toUpperCase());
+  };
+
+  const editButtonHandle = () => {
+    dispatch(addFormValues(employee));
+    dispatch(setIsFormVisible());
+  };
+
+  const removeButtonHandle = async () => {
+    const response = await dispatch(removeEmployee(id));
+    if (response.payload) {
+      dispatch(fetchAllEmployees());
+    }
+  };
 
   const startDate = !employmentStatus.startDate
     ? new Date()
@@ -26,53 +38,40 @@ const Employee = ({ employee }: EmployeeComponentType) => {
     ? new Date()
     : new Date(employmentStatus.endDate);
 
-  const capitaliseFirstLetter = (word: string) => {
-    return word.toLowerCase().replace(/./, (v) => v.toUpperCase());
-  };
+  const name = `${capitaliseFirstLetter(firstName)} ${
+    middleName ? capitaliseFirstLetter(middleName) : ""
+  } ${capitaliseFirstLetter(lastName)}`;
+
+  const contractDetails = `${capitaliseFirstLetter(
+    employmentStatus.contractType
+  )} - ${endDate.getFullYear() - startDate.getFullYear() + 1}yrs`;
 
   return (
-    <div>
+    <div className="container mx-auto">
       <hr />
-      <div>
-        <p
-          onClick={() => {
-            console.log("userPage");
-          }}
-        >{`${capitaliseFirstLetter(firstName)} ${
-          middleName ? capitaliseFirstLetter(middleName) : ""
-        } ${capitaliseFirstLetter(lastName)}`}</p>
-        <p>{`${capitaliseFirstLetter(employmentStatus.contractType)} - ${
-          endDate.getFullYear() - startDate.getFullYear() + 1
-        }yrs`}</p>
-        <p>{email ? capitaliseFirstLetter(email) : ""}</p>
+      <div className="flex flex-row justify-between h-28">
+        <div className="flex flex-col justify-between h-28 py-3">
+          <p className="font-bold">{name}</p>
+          <p className="font-normal">{contractDetails}</p>
+          <p className="font-light">
+            {email ? capitaliseFirstLetter(email) : ""}
+          </p>
+        </div>
+        <div className="py-3">
+          <button
+            className="text-emerald-400 rounded-md px-2 "
+            onClick={editButtonHandle}
+          >
+            Edit
+          </button>
+          <button
+            className="text-emerald-400 rounded-md px-2"
+            onClick={removeButtonHandle}
+          >
+            Remove
+          </button>
+        </div>
       </div>
-      <div>
-        <button
-          onClick={() => {
-            dispatch(addFormValues(employee));
-            setIsFormVisible(!isFormVisible);
-          }}
-        >
-          Edit
-        </button>
-        <button
-          onClick={async () => {
-            const response = await dispatch(removeEmployee(id));
-            if (response.payload) {
-              dispatch(fetchAllEmployees());
-            }
-          }}
-        >
-          Remove
-        </button>
-      </div>
-      {isFormVisible && (
-        <EmployeeForm
-          updateForm={updateFormData}
-          isFormVisible={isFormVisible}
-          setIsFormVisible={setIsFormVisible}
-        />
-      )}
     </div>
   );
 };

@@ -6,10 +6,11 @@ import { UpdateEmployeeTypes, ReduxState } from "../utility/types";
 import { formatDate } from "../utility/AddEmployeeHelpers";
 
 const initialState: ReduxState = {
-  loading: false,
+  isLoading: false,
   employees: [],
   error: "",
   employeeFormData: undefined,
+  isFormVisible: false,
 };
 
 export const fetchAllEmployees = createAsyncThunk(
@@ -66,13 +67,19 @@ const employeeSlice = createSlice({
     addFormValues(state, action) {
       state.employeeFormData = action.payload;
     },
+    deleteFormValues(state) {
+      state.employeeFormData = undefined;
+    },
+    setIsFormVisible(state) {
+      state.isFormVisible = !state.isFormVisible;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllEmployees.pending, (state) => {
-      state.loading = true;
+      state.isLoading = true;
     });
     builder.addCase(fetchAllEmployees.fulfilled, (state, action) => {
-      state.loading = false;
+      state.isLoading = false;
       const updated = action.payload.map((employee: FormValues) => {
         employee.employmentStatus.startDate = formatDate(
           employee.employmentStatus.startDate
@@ -86,12 +93,13 @@ const employeeSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchAllEmployees.rejected, (state, action) => {
-      state.loading = false;
+      state.isLoading = false;
       state.employees = [];
       state.error = action.error.message;
     });
   },
 });
 
-export const { addFormValues } = employeeSlice.actions;
+export const { addFormValues, deleteFormValues, setIsFormVisible } =
+  employeeSlice.actions;
 export default employeeSlice.reducer;

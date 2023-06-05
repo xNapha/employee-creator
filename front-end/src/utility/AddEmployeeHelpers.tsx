@@ -15,7 +15,7 @@ export const renderTextInputComponents = (obj: {
 };
 
 export const renderRadioInputComponents = (arr: {
-  labelTexts: string[];
+  labelTexts: Array<string>;
   registerText: string;
 }) => {
   return arr.labelTexts.map((labelText) => (

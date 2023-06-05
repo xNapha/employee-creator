@@ -20,14 +20,12 @@ import { useDispatch } from "react-redux";
 import {
   addNewEmployee,
   fetchAllEmployees,
+  setIsFormVisible,
   updateEmployee,
 } from "../../slices/employeeSlice";
+import FormSectionTitle from "../../components/Form/FormSectionTitle";
 
-const EmployeeForm = ({
-  updateForm,
-  isFormVisible,
-  setIsFormVisible,
-}: UpdateForm) => {
+const EmployeeForm = ({ updateForm }: UpdateForm) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -46,78 +44,88 @@ const EmployeeForm = ({
     }
     await dispatch(fetchAllEmployees());
     methods.reset();
-    setIsFormVisible(!isFormVisible);
+    dispatch(setIsFormVisible());
   };
 
   return (
     <FormProvider {...methods}>
-      <div>
-        <h1>Employee Details</h1>
-        <button
-          type="button"
+      <div className="absolute flex justify-center items-center h-screen w-screen">
+        <div
           onClick={() => {
-            setIsFormVisible(!isFormVisible);
+            dispatch(setIsFormVisible());
           }}
-        >
-          Exit
-        </button>
+          className="w-screen h-screen bg-neutral-800 absolute top-0 z-10 opacity-95"
+        ></div>
+        <section className="w-9/12 z-20 bg-white absolute h-[90vh]">
+          <div>
+            <h1>Employee Details</h1>
+            <button
+              type="button"
+              onClick={() => {
+                dispatch(setIsFormVisible());
+              }}
+            >
+              Exit
+            </button>
+          </div>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <div>
+              <FormSectionTitle title="Personal Information" />
+              {renderTextInputComponents(personalInformation)}
+            </div>
+
+            <div>
+              <FormSectionTitle title="Contact Details" />
+              {renderTextInputComponents(contactDetails)}
+            </div>
+
+            <div>
+              <FormSectionTitle title="Employee Status" />
+              <h4>What is the contract type?</h4>
+              {renderRadioInputComponents(contractType)}
+            </div>
+
+            <div>
+              <DateInput
+                labelText="Start date"
+                registerText="employmentStatus.startDate"
+                disabled={false}
+              />
+              <DateInput
+                labelText="End date"
+                registerText="employmentStatus.endDate"
+                disabled={isDisabled}
+              />
+
+              <CheckBoxInput
+                inputName="isOnGoing"
+                labelText="On going?"
+                registerText="employmentStatus.isOnGoing"
+                setIsDisabled={setIsDisabled}
+                isDisabled={isDisabled}
+              />
+            </div>
+            <div>
+              <h4>Is this on a full-time or part-time basis?</h4>
+              {renderRadioInputComponents(timeBasis)}
+            </div>
+
+            <TextInput
+              labelText="Hours per week"
+              registerText="employmentStatus.hoursPerWeek"
+            />
+            <button type="submit">Submit</button>
+            <button
+              type="button"
+              onClick={() => {
+                methods.reset();
+              }}
+            >
+              Reset
+            </button>
+          </form>
+        </section>
       </div>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div>
-          <h2>Personal Information</h2>
-          {renderTextInputComponents(personalInformation)}
-        </div>
-
-        <div>
-          <h2>Contact Details</h2>
-          {renderTextInputComponents(contactDetails)}
-        </div>
-
-        <div>
-          <h2>Employee Status</h2>
-          <h4>What is the contract type?</h4>
-          {renderRadioInputComponents(contractType)}
-        </div>
-
-        <div>
-          <DateInput
-            labelText="Start date"
-            registerText="employmentStatus.startDate"
-            disabled={false}
-          />
-          <DateInput
-            labelText="End date"
-            registerText="employmentStatus.endDate"
-            disabled={isDisabled}
-          />
-
-          <CheckBoxInput
-            inputName="isOnGoing"
-            labelText="On going?"
-            registerText="employmentStatus.isOnGoing"
-            setIsDisabled={setIsDisabled}
-            isDisabled={isDisabled}
-          />
-        </div>
-        <div>
-          <h4>Is this on a full-time or part-time basis?</h4>
-          {renderRadioInputComponents(timeBasis)}
-        </div>
-
-        <TextInput
-          labelText="Hours per week"
-          registerText="employmentStatus.hoursPerWeek"
-        />
-        <button type="submit">Submit</button>
-        <button
-          type="button"
-          onClick={() => {
-            methods.reset();
-          }}
-        >
-          Reset
-        </button>
-      </form>
     </FormProvider>
   );
 };
