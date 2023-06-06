@@ -7,7 +7,7 @@ type RadioInputProps = {
 const RadioInput = ({ labelText, registerText }: RadioInputProps) => {
   const { register } = useFormContext();
   return (
-    <div>
+    <div className="my-1">
       <input
         {...register(registerText)}
         type="radio"

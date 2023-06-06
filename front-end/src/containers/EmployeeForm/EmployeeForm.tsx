@@ -1,5 +1,7 @@
 import TextInput from "../../components/Form/TextInput";
 import DateInput from "../../components/Form/DateInput";
+import FormButton from "../../components/Form/FormButton";
+import FormSubSection from "../../components/Form/FormSubSection";
 import {
   renderRadioInputComponents,
   renderTextInputComponents,
@@ -24,6 +26,7 @@ import {
   updateEmployee,
 } from "../../slices/employeeSlice";
 import FormSectionTitle from "../../components/Form/FormSectionTitle";
+import FormSection from "../../components/Form/FormSection";
 
 const EmployeeForm = ({ updateForm }: UpdateForm) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -49,83 +52,96 @@ const EmployeeForm = ({ updateForm }: UpdateForm) => {
 
   return (
     <FormProvider {...methods}>
-      <div className="absolute flex justify-center items-center h-screen w-screen">
+      <section className="absolute flex justify-center items-center h-screen w-screen ">
         <div
           onClick={() => {
             dispatch(setIsFormVisible());
           }}
           className="w-screen h-screen bg-neutral-800 absolute top-0 z-10 opacity-95"
         ></div>
-        <section className="w-9/12 z-20 bg-white absolute h-[90vh]">
-          <div>
-            <h1>Employee Details</h1>
+        <section className="w-5/12 h-[83vh] z-20 bg-white absolute rounded-3xl px-10 py-5 overflow-auto">
+          <header className="h-10 flex flex-row justify-between items-center">
+            <h1 className="text-4xl font-bold">Employee Details</h1>
             <button
               type="button"
+              className="bg-emerald-400 px-3 py-1 rounded-xl text-white"
               onClick={() => {
                 dispatch(setIsFormVisible());
               }}
             >
               Exit
             </button>
-          </div>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <div>
-              <FormSectionTitle title="Personal Information" />
+          </header>
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className="flex flex-col"
+          >
+            <FormSection extraClasses="">
+              <FormSectionTitle> Personal Information</FormSectionTitle>
               {renderTextInputComponents(personalInformation)}
-            </div>
+            </FormSection>
 
-            <div>
-              <FormSectionTitle title="Contact Details" />
+            <FormSection extraClasses="">
+              <FormSectionTitle>Contact Details</FormSectionTitle>
               {renderTextInputComponents(contactDetails)}
-            </div>
+            </FormSection>
 
-            <div>
-              <FormSectionTitle title="Employee Status" />
-              <h4>What is the contract type?</h4>
-              {renderRadioInputComponents(contractType)}
-            </div>
+            <FormSection extraClasses="">
+              <FormSectionTitle>Employee Status</FormSectionTitle>
 
-            <div>
-              <DateInput
-                labelText="Start date"
-                registerText="employmentStatus.startDate"
-                disabled={false}
+              <FormSubSection extraClasses="grid grid-cols-3 justify-items-end">
+                <h4>What is the contract type?</h4>
+                {renderRadioInputComponents(contractType)}
+              </FormSubSection>
+              <FormSubSection extraClasses="grid grid-cols-2 gap-x-5">
+                <DateInput
+                  labelText="Start date"
+                  registerText="employmentStatus.startDate"
+                  disabled={false}
+                />
+                <DateInput
+                  labelText="End date"
+                  registerText="employmentStatus.endDate"
+                  disabled={isDisabled}
+                />
+
+                <CheckBoxInput
+                  inputName="isOnGoing"
+                  labelText="On going?"
+                  registerText="employmentStatus.isOnGoing"
+                  setIsDisabled={setIsDisabled}
+                  isDisabled={isDisabled}
+                />
+              </FormSubSection>
+
+              <FormSubSection extraClasses="grid grid-cols-3 justify-items-end">
+                <h4>Is this on a full-time or part-time basis?</h4>
+                {renderRadioInputComponents(timeBasis)}
+              </FormSubSection>
+
+              <TextInput
+                labelText="Hours per week"
+                registerText="employmentStatus.hoursPerWeek"
+                isRequired={true}
               />
-              <DateInput
-                labelText="End date"
-                registerText="employmentStatus.endDate"
-                disabled={isDisabled}
-              />
+            </FormSection>
 
-              <CheckBoxInput
-                inputName="isOnGoing"
-                labelText="On going?"
-                registerText="employmentStatus.isOnGoing"
-                setIsDisabled={setIsDisabled}
-                isDisabled={isDisabled}
-              />
-            </div>
-            <div>
-              <h4>Is this on a full-time or part-time basis?</h4>
-              {renderRadioInputComponents(timeBasis)}
-            </div>
-
-            <TextInput
-              labelText="Hours per week"
-              registerText="employmentStatus.hoursPerWeek"
-            />
-            <button type="submit">Submit</button>
-            <button
-              type="button"
-              onClick={() => {
-                methods.reset();
-              }}
-            >
-              Reset
-            </button>
+            <FormSection extraClasses="flex flex-row justify-center gap-20">
+              <FormButton type="submit" onClick={undefined}>
+                Submit
+              </FormButton>
+              <FormButton
+                type="button"
+                onClick={() => {
+                  methods.reset();
+                }}
+              >
+                Reset
+              </FormButton>
+            </FormSection>
           </form>
         </section>
-      </div>
+      </section>
     </FormProvider>
   );
 };

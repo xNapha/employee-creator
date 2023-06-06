@@ -10,6 +10,7 @@ export const renderTextInputComponents = (obj: {
       key={category.labelText}
       labelText={category.labelText}
       registerText={category.registerText}
+      isRequired={category.isRequired}
     />
   ));
 };
@@ -32,14 +33,17 @@ export const personalInformation = {
     {
       labelText: "First Name",
       registerText: "firstName",
+      isRequired: true,
     },
     {
       labelText: "Middle Name",
       registerText: "middleName",
+      isRequired: false,
     },
     {
       labelText: "Last Name",
       registerText: "lastName",
+      isRequired: true,
     },
   ],
 };
@@ -49,30 +53,37 @@ export const contactDetails = {
     {
       labelText: "Email address",
       registerText: "email",
+      isRequired: true,
     },
     {
       labelText: "Mobile number",
       registerText: "mobileNumber",
+      isRequired: true,
     },
     {
       labelText: "Street number",
       registerText: "address.streetNumber",
+      isRequired: true,
     },
     {
       labelText: "Street name",
       registerText: "address.streetName",
+      isRequired: true,
     },
     {
       labelText: "Suburb",
       registerText: "address.suburb",
+      isRequired: true,
     },
     {
       labelText: "State",
       registerText: "address.state",
+      isRequired: true,
     },
     {
       labelText: "Post code",
       registerText: "address.postCode",
+      isRequired: true,
     },
   ],
 };
@@ -80,11 +91,13 @@ export const contactDetails = {
 export const contractType = {
   labelTexts: ["Permanent", "Contract"],
   registerText: "employmentStatus.contractType",
+  isRequired: true,
 };
 
 export const timeBasis = {
   labelTexts: ["Full-time", "Part-time"],
   registerText: "employmentStatus.timeBasis",
+  isRequired: true,
 };
 
 export const formatDate = (dateString: string | null) => {

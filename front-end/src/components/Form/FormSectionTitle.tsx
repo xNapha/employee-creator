@@ -1,11 +1,7 @@
-type FormSectionTitleType = {
-  title: string;
-};
-
-const FormSectionTitle = ({ title }: FormSectionTitleType) => {
+const FormSectionTitle = ({ children }: any) => {
   return (
     <>
-      <h2 className="font-bold text-2xl">{title}</h2>
+      <h2 className="font-bold text-2xl">{children}</h2>
     </>
   );
 };

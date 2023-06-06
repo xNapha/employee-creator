@@ -8,8 +8,9 @@ type DateInputProps = {
 
 const DateInput = ({ labelText, registerText, disabled }: DateInputProps) => {
   const { register } = useFormContext();
+
   return (
-    <div>
+    <div className="flex flex-row justify-between my-3">
       <label>{labelText}</label>
       <input
         type="date"
@@ -17,6 +18,7 @@ const DateInput = ({ labelText, registerText, disabled }: DateInputProps) => {
           valueAsDate: true,
           disabled: disabled,
         })}
+        className="text-right w-36 pl-2 border-solid border-slate-400 border-2 rounded-lg"
       />
     </div>
   );

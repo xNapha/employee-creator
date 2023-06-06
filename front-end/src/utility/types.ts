@@ -48,6 +48,7 @@ export type EmployeeComponentType = {
 export type CategoriesType = {
   labelText: string;
   registerText: string;
+  isRequired: boolean;
 };
 
 export type UpdateForm = {
