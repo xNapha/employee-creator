@@ -94,10 +94,15 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Updated the defaultValues for the Form to show the current date and end date if applicable
 - Deleted Nav Bar because I realised that it was out of scope for what the project mvp wanted
 
-### 5/06/2023 | Styling With TailWind
+### 5/06/2023 | Styling With Tailwind
 
 - Refactored the code to have redux store all state, I was going to use context but then i realised that if im using redux i might as well use it for everything else
 - Added some basic styling to EmployeeList, Employee
+
+### 6/06/2023 | More Tailwind Styling
+
+- Finished all the styling for the web application
+- Created a several more form components
 
 ---
 
