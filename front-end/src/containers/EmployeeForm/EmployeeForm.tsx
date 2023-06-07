@@ -10,7 +10,7 @@ import {
   contractType,
   timeBasis,
   defaultValues,
-} from "../../utility/AddEmployeeHelpers";
+} from "../../utility/EmployeeFormHelpers";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CheckBoxInput from "../../components/Form/CheckBoxInput";

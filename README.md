@@ -1,11 +1,12 @@
 # Employee Creator
 
-<!-- ## Demo & Snippets
+## Demo & Snippets
 
-- Include hosted link
+[Netlify Link](https://friendly-yeot-5eb8d5.netlify.app/)
+
 - Include images of app if CLI or Client App
 
---- -->
+---
 
 ## Requirements / Purpose
 
@@ -19,12 +20,13 @@ A web application to create, list, modify and delete employees.
 
 ---
 
-<!-- ## Build Steps
+## Build Steps
 
-- how to build / run project
-- use proper code snippets if there are any commands to run
+```gitBash
+npm run dev or npm run build
+```
 
---- -->
+---
 
 ## Approach
 

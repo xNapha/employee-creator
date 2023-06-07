@@ -3,9 +3,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { FormValues } from "../utility/types";
 import { UpdateEmployeeTypes, ReduxState } from "../utility/types";
-import { formatDate } from "../utility/AddEmployeeHelpers";
+import { formatDate } from "../utility/EmployeeFormHelpers";
 
-const initialState: ReduxState = {
+export const initialState: ReduxState = {
   isLoading: false,
   employees: [],
   error: "",
@@ -60,7 +60,7 @@ export const updateEmployee = createAsyncThunk(
   }
 );
 
-const employeeSlice = createSlice({
+export const employeeSlice = createSlice({
   name: "employee",
   initialState,
   reducers: {
@@ -80,6 +80,7 @@ const employeeSlice = createSlice({
     });
     builder.addCase(fetchAllEmployees.fulfilled, (state, action) => {
       state.isLoading = false;
+
       const updated = action.payload.map((employee: FormValues) => {
         employee.employmentStatus.startDate = formatDate(
           employee.employmentStatus.startDate
@@ -90,6 +91,7 @@ const employeeSlice = createSlice({
         return employee;
       });
       state.employees = updated;
+
       state.error = "";
     });
     builder.addCase(fetchAllEmployees.rejected, (state, action) => {

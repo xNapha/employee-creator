@@ -11,12 +11,13 @@ const TextInput = ({ labelText, registerText, isRequired }: TextInputProps) => {
   const { register } = useFormContext();
   return (
     <div className="flex flex-row justify-between my-3">
-      <label>{labelText}</label>
+      <label htmlFor={registerText}>{labelText}</label>
       <input
         className="border-solid border-slate-400 border-2 rounded-lg px-2"
         {...register(registerText, {
           setValueAs: (value) => (value ? value : null),
         })}
+        id={registerText}
       />
       <FormRequiredAsterix required={isRequired} />
     </div>

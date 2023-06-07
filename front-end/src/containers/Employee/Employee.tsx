@@ -44,7 +44,7 @@ const Employee = ({ employee }: EmployeeComponentType) => {
 
   const contractDetails = `${capitaliseFirstLetter(
     employmentStatus.contractType
-  )} - ${endDate.getFullYear() - startDate.getFullYear() + 1}yrs`;
+  )} - ${endDate.getFullYear() - startDate.getFullYear()}yrs`;
 
   return (
     <div className="container mx-auto">
