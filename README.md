@@ -106,6 +106,12 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Finished all the styling for the web application
 - Created a several more form components
 
+### 07/06/2023 | Testing and Deploying
+
+- Finished creating tests for the front end, mainly just focusing on the components and containers rendering
+- Deployed the final project on netlify but i realised that without the backend all you will see is a loading screen, so might take it down
+- Tried and failed to add tests for the backend, look further down for an explanation
+
 ---
 
 ## What did you struggling with?
@@ -140,5 +146,11 @@ type lah = {
 ### 2/06/2023 | Redux
 
 I understand the concept of redux but implementing the code is a lot more tedious than I thought, there is too much boilerplate setup before I can actually use it. It seems like a very powerful library to control state, but I feel like it might be over kill for this project, enough though it was recommended to use it by the nology coaches. But atleast it does get me learning and using it, otherwise I don't think I would ever find a use case to actually implement it.
+
+### 7/06/2023 | Testing
+
+This was my first project in which I created tests for react, so it was a struggle just trying to understand how to go about doing it. But I was finally able to wrap my head around what I needed to do.
+
+However for the backend, I tried looking up how to go about writing tests for the api but for some reason my dependencies aren't working, or maybe im doing it wrong. I have been at it for 2 hours trying to get it working, ive deleted the maven dependencies and redownloaded them, Ive tried downloading other dependencies for testing, watching videos, reading articles, but nothing seems to be working, so now i officially give up.
 
 ---
