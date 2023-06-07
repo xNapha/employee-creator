@@ -4,8 +4,6 @@
 
 [Netlify Link](https://friendly-yeot-5eb8d5.netlify.app/)
 
-- Include images of app if CLI or Client App
-
 ---
 
 ## Requirements / Purpose
