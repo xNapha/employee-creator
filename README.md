@@ -22,6 +22,32 @@ A web application to create, list, modify and delete employees.
 
 ## Build Steps
 
+Clone the repo
+
+### Back End
+
+1. Create the data base github_emploee_creator
+
+```mySQL
+create database github_employee_creator
+```
+
+2. Using eclipse import as new maven project
+
+3. In the src/main/resources/applications.properties file, replace the environment variables with your information
+
+4. Run the application as a java application
+
+### Front End
+
+1. Get the dependencies for the front end
+
+```gitBash
+npm init
+```
+
+2. Run the dev build of the web application
+
 ```gitBash
 npm run dev or npm run build
 ```
@@ -47,13 +73,14 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Remaining bugs, things that have been left unfixed
 - Features that are buggy / flimsy
 
----
+--- -->
 
 ## Future Goals
 
-- What are the immediate features you'd add given more time
+- Create more indepth tests for the front and back end,
+- Make the design match up to the pictures provided.
 
---- -->
+---
 
 ## Change logs
 
@@ -111,6 +138,26 @@ I would usually go for a TDD approach, but I feel like I'm not too familiar with
 - Finished creating tests for the front end, mainly just focusing on the components and containers rendering
 - Deployed the final project on netlify but i realised that without the backend all you will see is a loading screen, so might take it down
 - Tried and failed to add tests for the backend, look further down for an explanation
+
+### 08/06/2023 | Feedback
+
+Front End
+
+- File organisation could be worked upon,
+- Abstracting things could lead to confusion, main culprits are using functions to render components, nothing wrong with it just causes confusion
+- Some code seems redundant, for example, using setValue( value => value ? value : null)
+- could also be using OR statments in some places i am using ternary statements
+- Try and make the front end look pixel perfect with the demo snippets provided, nothing wrong with the design but is best to just copy something exactly
+- Some tests written very stupid (not the coaches' word these are my own)
+
+Back End
+
+- Validation could be further expanded upon, rather than just using @NotBlank
+- Tests could be written | (Post Nathan here, I think i figured out a way to implement tests, I completely forgot there was a test folder to begin with and I see that I could have been using that.)
+
+### 10/06/2023 | Adding environment variables
+
+- Finally figured out how to use environment variables using eclipse
 
 ---
 
